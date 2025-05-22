@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel de Administración</title>
+
+  <!-- Font Awesome para los iconos -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-p6O5Xn+XONBzK/H7+L/TIQXumeL3ZSRtG4hkFWzq7jkQq9DGD+ZIU2z1a8iFTjgEZPdaJfdU0PvP5n6QvYp2Rg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <!-- CSS embebido -->
+  <style>
+    :root {
+      --primary: #34495e;
+      --secondary: #2ecc71;
+      --accent: #2980b9;
+      --bg: #ecf0f1;
+      --surface: #ffffff;
+      --text: #2c3e50;
+      --text-light: #ecf0f1;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background: var(--primary);
+      color: var(--text-light);
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px var(--shadow);
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      font-size: 2rem;
+      line-height: 1.2;
+    }
+
+    /* Botón Cerrar Sesión */
+    #logoutBtn {
+      background: var(--accent);
+      color: var(--text-light);
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    #logoutBtn:hover {
+      background: var(--secondary);
+    }
+
+    section {
+      background: var(--surface);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px var(--shadow);
+      margin-bottom: 2rem;
+    }
+    section h2 {
+      color: var(--accent);
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    /* Tabla de Usuarios */
+    #usuarios table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    #usuarios th,
+    #usuarios td {
+      padding: 0.75rem 1rem;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    #usuarios th {
+      background: var(--primary);
+      color: var(--text-light);
+    }
+    #usuarios tbody tr:nth-child(even) {
+      background: #f7f7f7;
+    }
+    #usuarios tbody tr:hover {
+      background: #e3e3e3;
+    }
+
+    /* Equipo de Trabajo */
+    .team-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+    .team-list li {
+      list-style: none;
+      background: var(--bg);
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 2px 4px var(--shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .team-list li:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    .team-list li i {
+      font-size: 1.5rem;
+      color: var(--secondary);
+      margin-right: 1rem;
+    }
+    .team-list li span {
+      font-weight: 600;
+    }
+
+    footer {
+      margin-top: auto;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #777;
+      padding: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Panel de Administración</h1>
+    <button id="logoutBtn">Cerrar Sesión</button>
+  </header>
+
+  <!-- Sección de Usuarios -->
+  <section id="usuarios">
+    <h2>Usuarios</h2>
+    <div id="userTableContainer"></div>
+  </section>
+
+  <!-- Sección de Equipo de Trabajo -->
+  <section id="equipo-trabajo">
+    <h2>Equipo de Trabajo</h2>
+    <ul class="team-list">
+      <li><i class="fas fa-laptop-code"></i><span>Saulo Diego Flores Luna</span></li>
+      <li><i class="fas fa-code"></i><span>Oscar Alejandro Ledezma Garza</span></li>
+      <li><i class="fas fa-database"></i><span>Diego Alan Velazquez Villanueva</span></li>
+      <li><i class="fas fa-server"></i><span>Eduardo Vazquez Castillo</span></li>
+      <li><i class="fas fa-terminal"></i><span>Cain Alberto Jaime</span></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Tu Empresa – Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- Script para generar tabla y manejar sesión -->
+  <script>
+    // Obtener lista de usuarios desde localStorage
+    var users = JSON.parse(localStorage.getItem('users')) || [];
+
+    function generateUserTable() {
+      if (users.length === 0) {
+        return '<p>No hay usuarios registrados.</p>';
+      }
+      var tableHtml = '<table>';
+      tableHtml += '<tr><th>Usuario</th><th>Correo</th><th>Rol</th><th>Email Verified</th></tr>';
+      users.forEach(function(u) {
+        tableHtml += '<tr>';
+        tableHtml += '<td>' + u.username + '</td>';
+        tableHtml += '<td>' + u.email + '</td>';
+        tableHtml += '<td>' + u.role + '</td>';
+        tableHtml += '<td>' + u.emailVerified + '</td>';
+        tableHtml += '</tr>';
+      });
+      tableHtml += '</table>';
+      return tableHtml;
+    }
+
+    // Inserta la tabla en el contenedor
+    document.getElementById('userTableContainer').innerHTML = generateUserTable();
+
+    // Botón de cierre de sesión
+    document.getElementById('logoutBtn').addEventListener('click', function(){
+      alert('Sesión cerrada.');
+      window.location.href = 'index.html';
+    });
+
+    // Cierre automático por inactividad (90 000 ms = 1:30 min)
+    var logoutTimer;
+    function resetLogoutTimer() {
+      clearTimeout(logoutTimer);
+      logoutTimer = setTimeout(function(){
+        alert("Se ha cerrado la sesión por inactividad.");
+        window.location.href = 'index.html';
+      }, 90000);
+    }
+    window.onload = resetLogoutTimer;
+    document.onmousemove = resetLogoutTimer;
+    document.onkeypress = resetLogoutTimer;
+  </script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Programación</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Tipografía y colores generales */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background: #f9f9f9;
+  color: #333;
+  padding: 1rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+}
+
+/* Secciones */
+section {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+section h2 {
+  margin-bottom: 1rem;
+  color: #3498db;
+  font-size: 1.75rem;
+}
+
+/* Listas */
+ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+}
+
+ul li {
+  margin-bottom: 0.5rem;
+}
+
+/* Código */
+pre {
+  background: #2d2d2d;
+  color: #f8f8f2;
+  padding: 1rem;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+code {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.95rem;
+}
+
+/* Enlaces */
+a {
+  color: #2980b9;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Pie de página */
+footer {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: #777;
+}
+</style>
+<body>
+  <header>
+    <h1>Introducción a la Programación</h1>
+  </header>
+
+  <section id="introduccion">
+    <h2>¿Qué es la programación?</h2>
+    <p>
+      La programación es el proceso de diseñar y escribir un conjunto de instrucciones
+      que permitan a un ordenador realizar tareas específicas. A través de distintos
+      lenguajes y paradigmas, podemos controlar el flujo de datos, gestionar almacenamiento
+      y resolver problemas de la vida real.
+    </p>
+  </section>
+
+  <section id="paradigmas">
+    <h2>Paradigmas de Programación</h2>
+    <ul>
+      <li><strong>Imperativo:</strong> Se centra en la secuencia de instrucciones que modifican el estado (ej. C).</li>
+      <li><strong>Orientado a Objetos (OOP):</strong> Modela el programa como un conjunto de entidades con datos y comportamientos (ej. Java, Python).</li>
+      <li><strong>Funcional:</strong> Basado en funciones puras y evita el estado mutable (ej. Haskell, Elixir).</li>
+      <li><strong>Declarativo:</strong> Describe qué se quiere obtener sin especificar cómo lograrlo (ej. SQL, HTML).</li>
+    </ul>
+  </section>
+
+  <section id="lenguajes-populares">
+    <h2>Lenguajes Populares</h2>
+    <ul>
+      <li><strong>C:</strong> Muy usado en sistemas embebidos y desarrollo de sistemas operativos.</li>
+      <li><strong>Python:</strong> Ideal para ciencia de datos, automatización y desarrollo web.</li>
+      <li><strong>JavaScript:</strong> Lenguaje de la web; imprescindible para front-end.</li>
+      <li><strong>Java:</strong> Backend empresarial y Android.</li>
+      <li><strong>SQL:</strong> Gestión y consulta de bases de datos relacionales.</li>
+    </ul>
+  </section>
+
+  <section id="recursos">
+    <h2>Recursos y Tutoriales</h2>
+    <ul>
+      <li><a href="https://developer.mozilla.org/es/docs/Web/JavaScript">MDN Web Docs (JavaScript)</a></li>
+      <li><a href="https://docs.python.org/es/3/">Documentación oficial de Python</a></li>
+      <li><a href="https://www.learn-c.org/">Tutorial interactivo de C</a></li>
+      <li><a href="https://www.sqltutorial.org/">SQL Tutorial</a></li>
+    </ul>
+  </section>
+
+  <section id="ejemplo">
+    <h2>Ejemplo de Código (JavaScript)</h2>
+    <pre><code>
+// Función que invierte una cadena
+function invertirCadena(str) {
+  return str.split('').reverse().join('');
+}
+
+console.log(invertirCadena('¡Hola mundo!')); // "!odnum aloH¡"
+    </code></pre>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Tu Nombre o Empresa</p>
+  </footer>
+</body>
+</html>
